@@ -1,9 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"net/http"
 )
 
 func main() {
-	fmt.Println("Hello Me")
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("Hello world two"))
+	})
+
+	http.ListenAndServe(":8080", nil)
 }
